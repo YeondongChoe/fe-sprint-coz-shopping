@@ -14,8 +14,8 @@ const DropdownMenu = styled.ul`
   background-color: white;
   border-radius: 12px;
   box-shadow: 0px 0px 3px rgba(0, 0, 30, 0.3);
-  opacity: ${({isOpen}) => (isOpen ? 0 : 1)};
-  /* pointer-events: ${({isOpen}) => (isOpen ? 'auto': 'none')}; */
+  opacity: ${({isOpen}) => (isOpen ? 1 : 0)};
+  pointer-events: ${({isOpen}) => (isOpen ? 'auto': 'none')};
   transform: ${({isOpen}) => (isOpen ? 'translateY(0)' : 'translateY(-10px)')};
   transition: all 0.3s ease-in-out;
 `;
@@ -40,7 +40,7 @@ const Icon = styled.image`
   height: 20px;
 `;
 
-function Dropdown(props) {
+function Dropdown() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
