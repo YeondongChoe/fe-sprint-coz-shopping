@@ -2,6 +2,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { styled, createGlobalStyle} from "styled-components";
 import Header from "./Header";
+import Footer from "./Footer";
 
 const GlobalStyle = createGlobalStyle`
   box-sizing: border-box;
@@ -14,6 +15,7 @@ function App() {
     <>
     <GlobalStyle/>
       <Header />
+      <Footer />
     </>
   );
 }
