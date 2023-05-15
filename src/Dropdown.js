@@ -40,7 +40,7 @@ const Icon = styled.image`
 `;
 
 function Dropdown() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
