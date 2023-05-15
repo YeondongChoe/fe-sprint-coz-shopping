@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { styled, Styled } from "styled-components";
 
+
 const DropdownMenu = styled.ul`
   position: absolute;
   top: 100%;
@@ -39,8 +40,8 @@ const Icon = styled.image`
   height: 20px;
 `;
 
-function Dropdown() {
-  const [isOpen, setIsOpen] = useState(true);
+function Dropdown(props) {
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -55,7 +56,7 @@ function Dropdown() {
       <Icon><img src="아이콘.jpg" alt="아이콘" onClick={toggleDropdown}></img></Icon>
       <DropdownMenu isOpen={isOpen}>
         <DropdownMenuItem disabled>OOO님, 안녕하세요!</DropdownMenuItem>
-        <DropdownMenuItem>상품리스트 페이지</DropdownMenuItem>
+        <DropdownMenuItem> 상품리스트 페이지</DropdownMenuItem>
         <DropdownMenuItem none>북마크 페이지</DropdownMenuItem>
       </DropdownMenu>
     </>
