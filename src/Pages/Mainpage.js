@@ -1,6 +1,6 @@
 import React from "react";
 import { styled } from "styled-components";
-import Card from "./Card";
+import Card from "../Components/Card";
 import { useEffect, useState } from 'react';
 
 const MainContainer = styled.main`

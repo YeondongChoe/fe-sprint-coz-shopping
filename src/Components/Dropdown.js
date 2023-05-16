@@ -53,7 +53,7 @@ function Dropdown() {
 
   return(
     <>
-      <Icon><img src="아이콘.jpg" alt="아이콘" onClick={toggleDropdown}></img></Icon>
+      <Icon><img src="icon.jpg" alt="아이콘" onClick={toggleDropdown}></img></Icon>
       <DropdownMenu isOpen={isOpen}>
         <DropdownMenuItem disabled>OOO님, 안녕하세요!</DropdownMenuItem>
         <DropdownMenuItem> 상품리스트 페이지</DropdownMenuItem>

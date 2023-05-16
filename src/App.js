@@ -6,7 +6,7 @@ import Footer from "./Components/Footer";
 import Main from "./Pages/Mainpage";
 
 function App() {
-    return (
+  return (
     <>
       <Header/>
       <Main/>
