@@ -1,11 +1,16 @@
 import React from "react";
 import { styled } from "styled-components";
 
-
 const CardImg = styled.article`
   width: 264px;
-  height: 130px;
+  height: 210px;
   margin: 10px;
+`
+
+const Img = styled.img`
+  width: 264px;
+  height: 210px;
+  /* margin: 10px; */
 `
 
 const CardTitle = styled.h3`
@@ -14,39 +19,69 @@ const CardTitle = styled.h3`
   justify-content: space-between;
 `
 
-const ColorNum = styled.span`
-  color: blue;
+const Description = styled.span`
+  color: ${({discountPercentage}) => (discountPercentage ? 'blue': 'none')};
   font-size: 16px;
 `
 
 const Subtitle = styled.span`
   display: flex;
-  justify-content: ${({number}) => (number ? 'end': 'none')};
+  justify-content: ${({price, follower}) => (price || follower ? 'end': 'none')};
   font-size: 16px;
 `
+function Card({
+    brand_image_url,
+    image_url,
+    title,
+    brand_name,
+    discountPercentage,
+    follower,
+    price,
+    sub_title,
+    id,
+    type 
+    }) 
+    
+    {
 
-function Card() {
     return(
         <>
-          <CardImg><img src="이미지.png" alt="card"></img>
-            <CardTitle>애플워치 스트랩 <ColorNum>15%</ColorNum>
+          <CardImg>
+            <Img src={image_url ? image_url : brand_image_url} alt="card"></Img>
+            <CardTitle>
+            {(() => {
+            if (title) {
+                if(type==="Category") {
+                    return `#${title}`
+                } else {
+                    return title
+                };
+            } else {
+              return brand_name;
+            }
+          })()}
+          
+            {(() => {
+            if (discountPercentage) {
+              return <Description discountPercentage={discountPercentage}>{discountPercentage}%</Description>;
+            } else if(follower) {
+                return <Description>관심고객수</Description>;
+            }else {
+              return null;
+            }
+          })()}
             </CardTitle>
-            <Subtitle number>12,900원</Subtitle>
-          </CardImg>
-
-          <CardImg><img src="이미지(1).png" alt="card"></img>
-          <CardTitle>#산악용품</CardTitle>
-          </CardImg>
-
-          <CardImg><img src="이미지(2).png" alt="card"></img>
-            <CardTitle>여행을 떠나요</CardTitle>
-            <Subtitle>여행 용품 할인전</Subtitle>
-          </CardImg>
-
-          <CardImg><img src="이미지(3).png" alt="card"></img>
-            <CardTitle>롯데아울렛 <span>관심고객수</span>
-            </CardTitle>
-            <Subtitle number>123,456</Subtitle>
+            <Subtitle price={price} follower={follower}>
+            {(() => {
+            if (price) {
+              return price.toLocaleString() + "원";
+            } else if (follower) {
+                return follower.toLocaleString();
+            } else {
+              return sub_title;
+            }
+          })()}
+            </Subtitle>
           </CardImg>
         </>
     )
