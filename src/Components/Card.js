@@ -4,6 +4,8 @@ import { styled } from "styled-components";
 import BookmarkOn from '../bookmark_on.svg';
 import BookmarkOff from '../bookmark_off.svg';
 
+import Modal from "../Components/Modal";
+
 const CardImg = styled.article`
   width: 264px;
   height: 210px;
@@ -13,10 +15,11 @@ const CardImg = styled.article`
 const Img = styled.img`
   width: 264px;
   height: 210px;
-  border-radius: 10px;
+  border-radius: 12px;
+  cursor: pointer;
 `
 
-const Bookmarkicon = styled.div`
+export const Bookmarkicon = styled.div`
   display: flex;
   justify-content: end;
   margin-top: -35px;
@@ -41,43 +44,55 @@ const Subtitle = styled.span`
   justify-content: ${({price, follower}) => (price || follower ? 'end': 'none')};
   font-size: 16px;
 `
-function Card({
-    brand_image_url,
-    image_url,
-    title,
+function Card(props) {
+  const {brand_image_url,
     brand_name,
     discountPercentage,
     follower,
+    id,
+    image_url,
     price,
     sub_title,
-    id,
-    type 
-    })
-    {
-      const [isOn, setIsOn] = useState(false);
+    title,
+    type} = props.item;
 
-      const BookmarkClick = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const openModal = (img, name) => {
+    const item = {img, name}
+    setSelectedItem(item);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedItem(null);
+    setIsModalOpen(false);
+  };
+
+    //console.log(props.item);
+
+  const [isOn, setIsOn] = useState(false);
+
+  const BookmarkClick = () => {
         setIsOn(!isOn);
       }
+
     return(
         <>
           <CardImg>
-            <Img src={image_url ? image_url : brand_image_url} alt="card">
+            <Img src={image_url || brand_image_url} alt="card" 
+            onClick={() => {openModal(image_url || brand_image_url, title || brand_name)}}>
             </Img>
             <Bookmarkicon onClick={BookmarkClick}>
               {isOn ? (<img src={BookmarkOn} alt="bookmark_on" />) : (<img src={BookmarkOff} alt="bookmark_on" />)}        
             </Bookmarkicon>
             <CardTitle>
             {(() => {
-            if (title) {
-                if(type==="Category") {
-                    return `#${title}`
-                } else {
-                    return title
-                };
-            } else {
-              return brand_name;
-            }
+              if(type === "Category") {
+                  return `#${title}`
+              } else {
+                  return title || brand_name
+              };
           })()}
           
             {(() => {
@@ -102,6 +117,8 @@ function Card({
           })()}
             </Subtitle>
           </CardImg>
+          {isModalOpen && (<Modal item={selectedItem} onClose={closeModal}/>
+                )}
         </>
     )
 }

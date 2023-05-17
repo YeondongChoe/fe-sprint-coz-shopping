@@ -3,13 +3,13 @@ import "./App.css";
 import { styled } from "styled-components";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
-import Main from "./Pages/Mainpage";
+import Mainpage from "./Pages/Mainpage";
 
 function App() {
   return (
     <>
       <Header/>
-      <Main/>
+      <Mainpage/>
       <Footer/>
     </>
   );
