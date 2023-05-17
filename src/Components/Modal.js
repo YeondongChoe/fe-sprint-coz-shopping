@@ -1,6 +1,9 @@
 import React, {useState} from "react";
 import { styled, Styled } from "styled-components";
 
+import BookmarkOn from '../bookmark_on.svg';
+import BookmarkOff from '../bookmark_off.svg';
+
 const ModalContainer = styled.div`
   position: fixed;
   top:0; left: 0; right: 0; bottom: 0;
@@ -22,6 +25,18 @@ const Image = styled.img`
   border-radius: 12px;
 `;
 
+const ModalBookmarkicon = styled.span`
+  display: flex;
+  justify-content: start;
+  width: 24px;
+  height: 24px;
+  border: 10%;
+  position: absolute;
+  cursor: pointer;
+  bottom: 6%;
+  left: 23px;
+`;
+
 const Title = styled.h3`
   width: 644px;
   height: 30px;
@@ -29,8 +44,8 @@ const Title = styled.h3`
   line-height: 29px;
   position: absolute;
   bottom: 5%;
-  left: 50px;
-  color: blue;
+  left: 55px;
+  color: white;
   text-shadow : 0px 0px 4px rgba(0, 0, 0, 0.1);
 `;
 
@@ -46,12 +61,21 @@ const CloseBtn = styled.img`
 `;
 
 const Modal = ({ item, onClose }) => {
+    console.log(item)
+    const [isOn, setIsOn] = useState(false);
+
+    const ModalBookmarkClick = () => {
+          setIsOn(!isOn);
+        }
     return (
       <ModalContainer>
-          <ModalContent>
-            <Image src={item.brand_image_url || item.image_url} alt={item.title || item.brand_name} />
-            <Title>{item.title || item.brand_name}</Title>
-            <CloseBtn src="CloseBtn.png" alt="CloseBtn" onClick={onClose}></CloseBtn>
+        <ModalContent>
+          <Image src={item.img} alt='' />
+          <ModalBookmarkicon onClick={ModalBookmarkClick}>
+          {isOn ? (<img src={BookmarkOn} alt="bookmark_on" />) : (<img src={BookmarkOff} alt="bookmark_on" />)}
+          </ModalBookmarkicon>
+          <Title>{item.name}</Title>
+          <CloseBtn src="CloseBtn.png" alt="CloseBtn" onClick={onClose}></CloseBtn>
           </ModalContent>
       </ModalContainer>
     );

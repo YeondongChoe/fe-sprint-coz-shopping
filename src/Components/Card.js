@@ -57,9 +57,9 @@ function Card(props) {
     type} = props.item;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null)  
-
-  const openModal = (item) => {
+  const [selectedItem, setSelectedItem] = useState(null);
+  const openModal = (img, name) => {
+    const item = {img, name}
     setSelectedItem(item);
     setIsModalOpen(true);
   };
@@ -67,7 +67,7 @@ function Card(props) {
   const closeModal = () => {
     setSelectedItem(null);
     setIsModalOpen(false);
-  }
+  };
 
     //console.log(props.item);
 
@@ -80,22 +80,19 @@ function Card(props) {
     return(
         <>
           <CardImg>
-            <Img src={image_url ? image_url : brand_image_url} alt="card" onClick={openModal}>
+            <Img src={image_url || brand_image_url} alt="card" 
+            onClick={() => {openModal(image_url || brand_image_url, title || brand_name)}}>
             </Img>
             <Bookmarkicon onClick={BookmarkClick}>
               {isOn ? (<img src={BookmarkOn} alt="bookmark_on" />) : (<img src={BookmarkOff} alt="bookmark_on" />)}        
             </Bookmarkicon>
             <CardTitle>
             {(() => {
-            if (title) {
-                if(type==="Category") {
-                    return `#${title}`
-                } else {
-                    return title
-                };
-            } else {
-              return brand_name;
-            }
+              if(type === "Category") {
+                  return `#${title}`
+              } else {
+                  return title || brand_name
+              };
           })()}
           
             {(() => {
