@@ -46,7 +46,7 @@ function Header() {
         <HeaderSection>
             <HeaderBar>
                 <HeaderBarLeft>
-                    <Img><img src="로고.jpg" alt="로고"></img></Img>
+                    <Img><img src="logo.jpg" alt="logo"></img></Img>
                     <Title>COZ Shopping</Title>
                 </HeaderBarLeft>
                 <HeaderBarRight>
