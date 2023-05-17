@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 import Card from "../Components/Card";
 import { useEffect, useState } from 'react';
 
+
 const MainContainer = styled.main`
   width: 100%;
   height: 695px;
@@ -26,15 +27,15 @@ const PreviewLi = styled.section `
   display: flex;
 `
 
-function Main() {
+function Mainpage() {
   const [items, setItems] = useState(JSON.parse(localStorage.getItem('key')) || []);
-  console.log(items)
+  //console.log(items)
 
   useEffect(() => {
-    fetchData();
+    itemlist();
   }, []);
 
-  const fetchData = () => {
+  const itemlist = () => {
     fetch('http://cozshopping.codestates-seb.link/api/v1/products')
       .then(response => response.json())
       .then(data => {
@@ -53,47 +54,25 @@ function Main() {
                 <PreviewLi>
                 {items.map((item, i) => {
                     return (
-                        <Card 
-                        key={i}
-                        brand_image_url={item.brand_image_url}
-                        brand_name={item.brand_name}
-                        discountPercentage={item.discountPercentage}
-                        follower={item.follower}
-                        id={item.id}
-                        image_url={item.image_url}
-                        price={item.price}
-                        sub_title={item.sub_title}
-                        title={item.title}
-                        type={item.type}
+                        <Card key={i} item={item}
                         ></Card>
                     );
                 }).slice(0, 4)}
                 </PreviewLi>              
-                </PreviewSection>
+            </PreviewSection>
             <PreviewSection>
                 <Title>북마크 리스트</Title>
                 <PreviewLi>
                 {items.map((item, i) => {
                     return (
-                        <Card 
-                        key={i} 
-                        brand_image_url={item.brand_image_url}
-                        brand_name={item.brand_name}
-                        discountPercentage={item.discountPercentage}
-                        follower={item.follower}
-                        id={item.id}
-                        image_url={item.image_url}
-                        price={item.price}
-                        sub_title={item.sub_title}
-                        title={item.title}
-                        type={item.type}
+                        <Card key={i} item={item}
                         ></Card>
                     );
                 }).slice(0, 4)}
-                </PreviewLi>  
+                </PreviewLi> 
                 </PreviewSection>
         </MainContainer>
     )
 }
 
-export default Main;
+export default Mainpage;
