@@ -60,22 +60,23 @@ const CloseBtn = styled.img`
   color: white;
 `;
 
-const Modal = ({ item, onClose }) => {
-    console.log(item)
-    const [isOn, setIsOn] = useState(false);
+const Modal = ({ selectedItem, closeModal }) => {
+    //console.log(item)
 
+    const [isOn, setIsOn] = useState(false);
     const ModalBookmarkClick = () => {
           setIsOn(!isOn);
         }
+        
     return (
-      <ModalContainer>
-        <ModalContent>
-          <Image src={item.img} alt='' />
+      <ModalContainer onClick={closeModal}>
+        <ModalContent onClick={(event) =>event.stopPropagation()}>
+          <Image src={selectedItem.img} alt='item_img'/>
           <ModalBookmarkicon onClick={ModalBookmarkClick}>
           {isOn ? (<img src={BookmarkOn} alt="bookmark_on" />) : (<img src={BookmarkOff} alt="bookmark_on" />)}
           </ModalBookmarkicon>
-          <Title>{item.name}</Title>
-          <CloseBtn src="CloseBtn.png" alt="CloseBtn" onClick={onClose}></CloseBtn>
+          <Title>{selectedItem.name}</Title>
+          <CloseBtn src="CloseBtn.png" alt="CloseBtn" onClick={closeModal}></CloseBtn>
           </ModalContent>
       </ModalContainer>
     );

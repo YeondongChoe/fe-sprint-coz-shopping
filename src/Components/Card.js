@@ -19,7 +19,7 @@ const Img = styled.img`
   cursor: pointer;
 `
 
-export const Bookmarkicon = styled.div`
+const Bookmarkicon = styled.div`
   display: flex;
   justify-content: end;
   margin-top: -35px;
@@ -69,8 +69,6 @@ function Card(props) {
     setIsModalOpen(false);
   };
 
-    //console.log(props.item);
-
   const [isOn, setIsOn] = useState(false);
 
   const BookmarkClick = () => {
@@ -108,7 +106,7 @@ function Card(props) {
             <Subtitle price={price} follower={follower}>
             {(() => {
             if (price) {
-              return price.toLocaleString() + "원";
+              return Number(price).toLocaleString() + "원";
             } else if (follower) {
                 return follower.toLocaleString();
             } else {
@@ -117,7 +115,7 @@ function Card(props) {
           })()}
             </Subtitle>
           </CardImg>
-          {isModalOpen && (<Modal item={selectedItem} onClose={closeModal}/>
+          {isModalOpen && (<Modal selectedItem={selectedItem} closeModal={closeModal}/>
                 )}
         </>
     )
