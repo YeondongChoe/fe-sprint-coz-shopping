@@ -52,23 +52,21 @@ function Mainpage() {
             <PreviewSection>
                 <Title>상품 리스트</Title>
                 <PreviewLi>
-                {items.map((item, i) => {
+                {items.slice(0, 4).map((item, i) => {
                     return (
-                        <Card key={i} item={item}
-                        ></Card>
+                        <Card key={i} item={item}/>
                     );
-                }).slice(0, 4)}
+                })}
                 </PreviewLi>              
             </PreviewSection>
             <PreviewSection>
                 <Title>북마크 리스트</Title>
                 <PreviewLi>
-                {items.map((item, i) => {
+                {items.slice(0, 4).map((item, i) => {
                     return (
-                        <Card key={i} item={item}
-                        ></Card>
+                        <Card key={i} item={item}/>
                     );
-                }).slice(0, 4)}
+                })}
                 </PreviewLi> 
                 </PreviewSection>
         </MainContainer>

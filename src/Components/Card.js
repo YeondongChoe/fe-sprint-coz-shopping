@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
 
-import BookmarkOn from '../bookmark_on.svg';
-import BookmarkOff from '../bookmark_off.svg';
+import BookmarkOn from '../Source/bookmark_on.svg';
+import BookmarkOff from '../Source/bookmark_off.svg';
 
 import Modal from "../Components/Modal";
 
@@ -10,6 +10,7 @@ const CardImg = styled.article`
   width: 264px;
   height: 210px;
   margin: 10px;
+  margin-bottom: 45px;
 `
 
 const Img = styled.img`
