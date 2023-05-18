@@ -2,6 +2,9 @@ import React from "react";
 import { styled} from "styled-components";
 import {useState} from 'react'
 import Dropdown from "./Dropdown";
+import { Link } from "react-router-dom";
+
+import Logo from '../Source/Logo.svg';
 
 const HeaderSection = styled.section`
   position: sticky;
@@ -30,7 +33,7 @@ const HeaderBarRight = styled.div`
   margin-right: 30px;
 `
 
-const Img = styled.image`
+const Img = styled.img`
   width: 55px;
   height: 30px;
   margin-right: 12px;
@@ -46,8 +49,10 @@ function Header() {
         <HeaderSection>
             <HeaderBar>
                 <HeaderBarLeft>
-                    <Img><img src="logo.jpg" alt="logo"></img></Img>
-                    <Title>COZ Shopping</Title>
+                  <Link to="/">
+                    <Img src={Logo} alt="logo"></Img>
+                  </Link>
+                  <Title>COZ Shopping</Title>
                 </HeaderBarLeft>
                 <HeaderBarRight>
                     <Dropdown></Dropdown>

@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import { styled, Styled } from "styled-components";
 
-import BookmarkOn from '../bookmark_on.svg';
-import BookmarkOff from '../bookmark_off.svg';
+import BookmarkOn from '../Source/bookmark_on.svg';
+import BookmarkOff from '../Source/bookmark_off.svg';
+import CloseBtnIcon from '../Source/CloseBtn.svg';
 
 const ModalContainer = styled.div`
   position: fixed;
@@ -76,7 +77,7 @@ const Modal = ({ selectedItem, closeModal }) => {
           {isOn ? (<img src={BookmarkOn} alt="bookmark_on" />) : (<img src={BookmarkOff} alt="bookmark_on" />)}
           </ModalBookmarkicon>
           <Title>{selectedItem.name}</Title>
-          <CloseBtn src="CloseBtn.png" alt="CloseBtn" onClick={closeModal}></CloseBtn>
+          <CloseBtn src={CloseBtnIcon} alt="CloseBtn" onClick={closeModal}></CloseBtn>
           </ModalContent>
       </ModalContainer>
     );

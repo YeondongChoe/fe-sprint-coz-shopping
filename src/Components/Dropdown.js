@@ -1,5 +1,10 @@
 import React, {useState} from "react";
-import { styled, Styled } from "styled-components";
+import { styled } from "styled-components";
+import { Link } from "react-router-dom";
+
+import DropdownIcon from '../Source/Icon.svg';
+import ProductIcon from '../Source/ProductIcon.svg';
+import BookmarkIcon from '../Source/BookmarkIcon.svg';
 
 
 const DropdownMenu = styled.ul`
@@ -56,6 +61,8 @@ const MenuTitle = styled.span`
   height: 25px;
   display: flex;
   align-items: center;
+  color: black;
+  text-decoration: none;
 `;
 
 function Dropdown() {
@@ -71,17 +78,19 @@ function Dropdown() {
 
   return(
     <>
-      <MenuIcon src="icon.jpg" alt="아이콘" onClick={openDropdown}></MenuIcon>
+      <MenuIcon src={DropdownIcon} alt="아이콘" onClick={openDropdown}></MenuIcon>
       <DropdownMenu isOpen={isOpen}>
-          <DropdownMenuList disabled>OOO님, 안녕하세요!</DropdownMenuList>
-          <DropdownMenuList>
-            <Icon src="ProductIcon.png" alt="ProductIcon"></Icon>
+        <DropdownMenuList disabled>OOO님, 안녕하세요!</DropdownMenuList>
+        <Link to="/Products/list" style={{ textDecoration: "none" }}>
+          <DropdownMenuList onClick={closeDropdown}>
+            <Icon src={ProductIcon} alt="ProductIcon"></Icon>
             <MenuTitle>상품리스트 페이지</MenuTitle>
           </DropdownMenuList>
-          <DropdownMenuList none>
-          <Icon src="BookmarkIcon.png" alt="BookmarkIcon"></Icon>
+        </Link>
+          <DropdownMenuList none onClick={closeDropdown}>
+          <Icon src={BookmarkIcon} alt="BookmarkIcon"></Icon>
             <MenuTitle>북마크 페이지</MenuTitle>
-            </DropdownMenuList>
+          </DropdownMenuList>
         </DropdownMenu>
       {isOpen && <DropdownBackground onClick={closeDropdown} />}
     </>
