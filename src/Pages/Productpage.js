@@ -67,6 +67,7 @@ function Productpage() {
     const [items, setItems] = useState([]);
     const [page, setPage] = useState(1);
     const bottomRef = useRef(null);
+    const updateCard = 4;
   
       
     useEffect(() => {
@@ -131,7 +132,7 @@ function Productpage() {
           </TabSection>
           <PreviewSection>
             <PreviewLi>
-                {items.slice(0, page * 4).map((item, index) => 
+                {items.slice(0, page * updateCard).map((item, index) => 
                  <Card key={index} item={item}/>
                 )}
             </PreviewLi>
